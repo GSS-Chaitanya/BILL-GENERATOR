@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Srinivasa Hardwares - Premium Hardware, Electrical & Plumbing Solutions</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="demo.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="demoscript.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-tools logo-icon"></i>
+          <h1>Srinivasa Hardwares</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <main class="container">
+
+    <!-- Hardware Section -->
+    <section class="categories" id="hardware">
+      <h2>Hardware Materials</h2>
+      <div class="category" onclick="toggleCategory('cat-hardware-tools')">
+        <h3>
+          Tools
+          <i class="fas fa-chevron-down category-icon"></i>
+        </h3>
+      </div>
+      <div class="products hidden" id="cat-hardware-tools">
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-hammer"></i>
+          </div>
+          <h3>Hammer</h3>
+          <div class="product-price">₹200</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-hammer', -1)">-</button>
+            <input type="number" id="qty-hammer" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-hammer', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('Hammer', 200, 'qty-hammer')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-screwdriver"></i>
+          </div>
+          <h3>Screwdriver</h3>
+          <div class="product-price">₹150</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-screwdriver', -1)">-</button>
+            <input type="number" id="qty-screwdriver" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-screwdriver', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('Screwdriver', 150, 'qty-screwdriver')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>Wrench</h3>
+          <div class="product-price">₹250</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-wrench', -1)">-</button>
+            <input type="number" id="qty-wrench" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-wrench', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('Wrench', 250, 'qty-wrench')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+      </div>
+
+      <div class="category" onclick="toggleCategory('cat-hardware-fasteners')">
+        <h3>
+          Fasteners
+          <i class="fas fa-chevron-down category-icon"></i>
+        </h3>
+      </div>
+      <div class="products hidden" id="cat-hardware-fasteners">
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Screws</h3>
+          <div class="product-price">₹10</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-screws', -1)">-</button>
+            <input type="number" id="qty-screws" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-screws', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('Screws', 10, 'qty-screws')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Nails</h3>
+          <div class="product-price">₹5</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-nails', -1)">-</button>
+            <input type="number" id="qty-nails" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-nails', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('Nails', 5, 'qty-nails')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Electrical Section -->
+    <section class="categories" id="electrical">
+      <h2>Electrical Materials</h2>
+      <div class="category" onclick="toggleCategory('cat-electrical-wiring')">
+        <h3>
+          Wiring
+          <i class="fas fa-chevron-down category-icon"></i>
+        </h3>
+      </div>
+      <div class="products hidden" id="cat-electrical-wiring">
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-plug"></i>
+          </div>
+          <h3>Copper Wire</h3>
+          <div class="product-price">₹500</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-copper-wire', -1)">-</button>
+            <input type="number" id="qty-copper-wire" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-copper-wire', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('Copper Wire', 500, 'qty-copper-wire')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+      </div>
+
+      <div class="category" onclick="toggleCategory('cat-electrical-components')">
+        <h3>
+          Components
+          <i class="fas fa-chevron-down category-icon"></i>
+        </h3>
+      </div>
+      <div class="products hidden" id="cat-electrical-components">
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>LED Bulb</h3>
+          <div class="product-price">₹100</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-led-bulb', -1)">-</button>
+            <input type="number" id="qty-led-bulb" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-led-bulb', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('LED Bulb', 100, 'qty-led-bulb')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-toggle-on"></i>
+          </div>
+          <h3>Switch</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-switch', -1)">-</button>
+            <input type="number" id="qty-switch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-switch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('Switch', 50, 'qty-switch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-plug"></i>
+          </div>
+          <h3>Socket</h3>
+          <div class="product-price">₹80</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-socket', -1)">-</button>
+            <input type="number" id="qty-socket" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-socket', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('Socket', 80, 'qty-socket')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Circuit Breaker</h3>
+          <div class="product-price">₹300</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-circuit-breaker', -1)">-</button>
+            <input type="number" id="qty-circuit-breaker" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-circuit-breaker', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('Circuit Breaker', 300, 'qty-circuit-breaker')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plumbing Section -->
+    <section class="categories" id="plumbing">
+      <h2>Plumbing Materials</h2>
+      <div class="category" onclick="toggleCategory('cat-3-4inch')">
+        <h3>
+          3/4 inch Materials
+          <i class="fas fa-chevron-down category-icon"></i>
+        </h3>
+      </div>
+      <div class="products hidden" id="cat-3-4inch">
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>CPVC Pipe (3/4)</h3>
+          <div class="product-price">₹312</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-cpvc-3-4inch', -1)">-</button>
+            <input type="number" id="qty-cpvc-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-cpvc-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('CPVC Pipe (3/4)', 312, 'qty-cpvc-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>3/4 L-Bend</h3>
+          <div class="product-price">₹40</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-lbend-3-4inch', -1)">-</button>
+            <input type="number" id="qty-lbend-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-lbend-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('3/4 L-Bend', 40, 'qty-lbend-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>3/4 T-Bend</h3>
+          <div class="product-price">₹40</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-tbend-3-4inch', -1)">-</button>
+            <input type="number" id="qty-tbend-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-tbend-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('3/4 T-Bend', 40, 'qty-tbend-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>3/4 Socket</h3>
+          <div class="product-price">₹40</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-socket-3-4inch', -1)">-</button>
+            <input type="number" id="qty-socket-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-socket-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('3/4 Socket', 40, 'qty-socket-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>3/4 Elbow</h3>
+          <div class="product-price">₹40</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-elbow-3-4inch', -1)">-</button>
+            <input type="number" id="qty-elbow-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-elbow-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('3/4 Elbow', 40, 'qty-elbow-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>3/4 Ball Valve</h3>
+          <div class="product-price">₹40</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-ballvalve-3-4inch', -1)">-</button>
+            <input type="number" id="qty-ballvalve-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-ballvalve-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('3/4 Ball Valve', 40, 'qty-ballvalve-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>3/4 Brass L-Bend</h3>
+          <div class="product-price">₹40</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-l-3-4inch', -1)">-</button>
+            <input type="number" id="qty-brass-l-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-l-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('3/4 Brass L-Bend', 40, 'qty-brass-l-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>3/4 Brass T-Bend</h3>
+          <div class="product-price">₹40</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-t-3-4inch', -1)">-</button>
+            <input type="number" id="qty-brass-t-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-t-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('3/4 Brass T-Bend', 40, 'qty-brass-t-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>3/4 Brass Socket</h3>
+          <div class="product-price">₹40</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-socket-3-4inch', -1)">-</button>
+            <input type="number" id="qty-brass-socket-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-socket-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('3/4 Brass Socket', 40, 'qty-brass-socket-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>3/4 Brass Elbow</h3>
+          <div class="product-price">₹40</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-elbow-3-4inch', -1)">-</button>
+            <input type="number" id="qty-brass-elbow-3-4inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-elbow-3-4inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('3/4 Brass Elbow', 40, 'qty-brass-elbow-3-4inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+      </div>
+
+      <div class="category" onclick="toggleCategory('cat-1inch')">
+        <h3>
+          1 inch Materials
+          <i class="fas fa-chevron-down category-icon"></i>
+        </h3>
+      </div>
+      <div class="products hidden" id="cat-1inch">
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>CPVC Pipe (1)</h3>
+          <div class="product-price">₹400</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-cpvc-1inch', -1)">-</button>
+            <input type="number" id="qty-cpvc-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-cpvc-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('CPVC Pipe (1)', 400, 'qty-cpvc-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1 L-Bend</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-lbend-1inch', -1)">-</button>
+            <input type="number" id="qty-lbend-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-lbend-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1 L-Bend', 50, 'qty-lbend-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1 T-Bend</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-tbend-1inch', -1)">-</button>
+            <input type="number" id="qty-tbend-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-tbend-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1 T-Bend', 50, 'qty-tbend-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1 Socket</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-socket-1inch', -1)">-</button>
+            <input type="number" id="qty-socket-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-socket-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1 Socket', 50, 'qty-socket-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1 Elbow</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-elbow-1inch', -1)">-</button>
+            <input type="number" id="qty-elbow-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-elbow-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1 Elbow', 50, 'qty-elbow-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1 Ball Valve</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-ballvalve-1inch', -1)">-</button>
+            <input type="number" id="qty-ballvalve-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-ballvalve-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1 Ball Valve', 50, 'qty-ballvalve-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1 Brass L-Bend</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-l-1inch', -1)">-</button>
+            <input type="number" id="qty-brass-l-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-l-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1 Brass L-Bend', 50, 'qty-brass-l-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1 Brass T-Bend</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-t-1inch', -1)">-</button>
+            <input type="number" id="qty-brass-t-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-t-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1 Brass T-Bend', 50, 'qty-brass-t-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1 Brass Socket</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-socket-1inch', -1)">-</button>
+            <input type="number" id="qty-brass-socket-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-socket-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1 Brass Socket', 50, 'qty-brass-socket-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1 Brass Elbow</h3>
+          <div class="product-price">₹50</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-elbow-1inch', -1)">-</button>
+            <input type="number" id="qty-brass-elbow-1inch" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-brass-elbow-1inch', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1 Brass Elbow', 50, 'qty-brass-elbow-1inch')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+      </div>
+
+      <div class="category" onclick="toggleCategory('cat-other')">
+        <h3>
+          2 inch Materials
+          <i class="fas fa-chevron-down category-icon"></i>
+        </h3>
+      </div>
+      <div class="products hidden" id="cat-other">
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>2 T-Bend</h3>
+          <div class="product-price">₹30</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-2tbend', -1)">-</button>
+            <input type="number" id="qty-2tbend" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-2tbend', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('2 T-Bend', 30, 'qty-2tbend')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>2 Pipe</h3>
+          <div class="product-price">₹500</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-2pipe', -1)">-</button>
+            <input type="number" id="qty-2pipe" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-2pipe', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('2 Pipe', 500, 'qty-2pipe')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+        <div class="product">
+          <div class="product-image">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3>1/2 Elbow</h3>
+          <div class="product-price">₹25</div>
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="updateQuantity('qty-12elbow', -1)">-</button>
+            <input type="number" id="qty-12elbow" class="quantity-input" min="1" value="1">
+            <button class="quantity-btn" onclick="updateQuantity('qty-12elbow', 1)">+</button>
+          </div>
+          <button class="add-btn" onclick="addToBill('1/2 Elbow', 25, 'qty-12elbow')">
+            <i class="fas fa-cart-plus"></i> Add to Bill
+          </button>
+        </div>
+      </div>
+    </section>
+    
+    <section class="bill-section">
+      <div class="bill-header">
+        <h2><i class="fas fa-receipt"></i> Your Bill</h2>
+        <div class="bill-actions">
+          <button class="action-btn pdf-btn" onclick="generatePDF()">
+            <i class="fas fa-file-pdf"></i> PDF
+          </button>
+          <button class="action-btn excel-btn" onclick="generateExcel()">
+            <i class="fas fa-file-excel"></i> Excel
+          </button>
+          <button class="action-btn clear-btn" onclick="clearBill()">
+            <i class="fas fa-trash-alt"></i> Clear Bill
+          </button>
+        </div>
+      </div>
+      
+      <div class="bill-content">
+        <table id="billTable">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="billTableBody">
+            <!-- Bill items will be inserted here -->
+          </tbody>
+        </table>
+        
+        <div id="emptyBillMessage" class="empty-bill">
+          <i class="fas fa-shopping-cart"></i>
+          <h3>Your bill is empty</h3>
+          <p>Add products to your bill to see them here</p>
+        </div>
+        
+        <div id="grandTotal" class="grand-total">
+          Grand Total: ₹0
+        </div>
+      </div>
+    </section>
+  </main>
+
+ 
+
+  <div class="mobile-nav">
+    <div class="mobile-nav-buttons">
+      <button class="mobile-nav-btn" onclick="scrollToTop()">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </button>
+      <button class="mobile-nav-btn" onclick="scrollToCategories('hardware')">
+        <i class="fas fa-hammer"></i>
+        <span>Hardware</span>
+      </button>
+      <button class="mobile-nav-btn" onclick="scrollToCategories('electrical')">
+        <i class="fas fa-bolt"></i>
+        <span>Electrical</span>
+      </button>
+      <button class="mobile-nav-btn" onclick="scrollToCategories('plumbing')">
+        <i class="fas fa-wrench"></i>
+        <span>Plumbing</span>
+      </button>
+      <button class="mobile-nav-btn" onclick="scrollToBill()">
+        <i class="fas fa-receipt"></i>
+        <span>Bill</span>
+      </button>
+    </div>
+  </div>
+</body>
+</html>
